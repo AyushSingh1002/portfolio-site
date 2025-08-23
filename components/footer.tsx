@@ -12,10 +12,10 @@ export function Footer() {
   }
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Github, href: "https://github.com/AyushSingh1002", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ayush-kumar-singh-1b21e/", label: "LinkedIn" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:alex.johnson@email.com", label: "Email" },
+    { icon: Mail, href: "mailto:ayushkumar408647@gmail.com", label: "Email" },
   ]
 
   return (
@@ -65,7 +65,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t border-border/50 text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center">
-            © 2024 Alex Johnson. Made with{" "}
+            © 2025 Ayush Kumar Singh. Made with{" "}
             <Heart className="w-4 h-4 mx-1 text-red-500 animate-pulse" fill="currentColor" />
             and lots of coffee
           </p>

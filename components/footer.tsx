@@ -26,7 +26,7 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 items-center">
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-2 bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-              Alex Johnson
+              Ayush Kumar Singh
             </h3>
             <p className="text-sm text-muted-foreground">Frontend Developer & UI/UX Designer</p>
           </div>

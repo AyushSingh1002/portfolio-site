@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import emailjs from "emailjs-com"
 import { useEffect, useRef, useState } from "react"
 import { Github, Linkedin, Twitter, Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -32,38 +32,47 @@ export function Contact() {
 
     return () => observer.disconnect()
   }, [])
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  emailjs
+    .sendForm(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      e.currentTarget, // ✅ this will only work if attached directly to <form>
+      process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
+    )
+    .then(
+      () => {
+        console.log("✅ Email sent successfully");
+        e.currentTarget?.reset(); // ✅ safe reset
+      },
+      (error) => {
+        console.error("❌ Failed:", error.text);
+      }
+    );
+};
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
 
-    // Reset after 3 seconds
-    setTimeout(() => setIsSubmitted(false), 3000)
-  }
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "alex.johnson@email.com",
-      href: "mailto:alex.johnson@email.com",
+      value: "ayushkumar408647@gmail.com",
+      href: "mailto:ayushkumar408647@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "+91 846-791-4977",
+      href: "tel:+918467914977",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Uttar Pradesh, India",
       href: "#",
     },
   ]
@@ -72,13 +81,13 @@ export function Contact() {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com",
+      href: "https://github.com/AyushSingh1002",
       color: "hover:text-gray-900 dark:hover:text-gray-100",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/ayush-kumar-singh-1b21e/",
       color: "hover:text-blue-600",
     },
     {
@@ -90,7 +99,7 @@ export function Contact() {
     {
       icon: Mail,
       label: "Email",
-      href: "mailto:alex.johnson@email.com",
+      href: "mailto:ayushkumar408647@gmail.com",
       color: "hover:text-red-500",
     },
   ]
@@ -146,73 +155,78 @@ export function Contact() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <Label htmlFor="name" className="text-sm font-semibold text-foreground">
-                            Full Name *
-                          </Label>
-                          <Input
-                            id="name"
-                            type="text"
-                            className="h-12 bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 rounded-xl"
-                            placeholder="John Doe"
-                            required
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="email" className="text-sm font-semibold text-foreground">
-                            Email Address *
-                          </Label>
-                          <Input
-                            id="email"
-                            type="email"
-                            className="h-12 bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 rounded-xl"
-                            placeholder="john@example.com"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="subject" className="text-sm font-semibold text-foreground">
-                          Subject
-                        </Label>
-                        <Input
-                          id="subject"
-                          type="text"
-                          className="h-12 bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 rounded-xl"
-                          placeholder="Project Discussion"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="message" className="text-sm font-semibold text-foreground">
-                          Message *
-                        </Label>
-                        <Textarea
-                          id="message"
-                          rows={6}
-                          className="bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 resize-none rounded-xl"
-                          placeholder="Tell me about your project, timeline, and budget..."
-                          required
-                        />
-                      </div>
-                      <Button
-                        type="submit"
-                        className="w-full h-14 bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-700 hover:via-purple-700 hover:to-cyan-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/25 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <div className="flex items-center justify-center">
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3" />
-                            Sending Message...
-                          </div>
-                        ) : (
-                          <div className="flex items-center justify-center">
-                            <Send className="w-5 h-5 mr-3" />
-                            Send Message
-                          </div>
-                        )}
-                      </Button>
-                    </form>
+  <div className="grid md:grid-cols-2 gap-6">
+    <div className="space-y-2">
+      <Label htmlFor="name" className="text-sm font-semibold text-foreground">
+        Full Name *
+      </Label>
+      <Input
+        id="name"
+        name="user_name"  // ✅ must match EmailJS template variable
+        type="text"
+        className="h-12 bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 rounded-xl"
+        placeholder="John Doe"
+        required
+      />
+    </div>
+    <div className="space-y-2">
+      <Label htmlFor="email" className="text-sm font-semibold text-foreground">
+        Email Address *
+      </Label>
+      <Input
+        id="email"
+        name="user_email"  // ✅ must match EmailJS template variable
+        type="email"
+        className="h-12 bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 rounded-xl"
+        placeholder="john@example.com"
+        required
+      />
+    </div>
+  </div>
+  <div className="space-y-2">
+    <Label htmlFor="subject" className="text-sm font-semibold text-foreground">
+      Subject
+    </Label>
+    <Input
+      id="subject"
+      name="subject"  // ✅ add subject
+      type="text"
+      className="h-12 bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 rounded-xl"
+      placeholder="Project Discussion"
+    />
+  </div>
+  <div className="space-y-2">
+    <Label htmlFor="message" className="text-sm font-semibold text-foreground">
+      Message *
+    </Label>
+    <Textarea
+      id="message"
+      name="message"  // ✅ must match EmailJS template variable
+      rows={6}
+      className="bg-background/50 border-border/50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 resize-none rounded-xl"
+      placeholder="Tell me about your project, timeline, and budget..."
+      required
+    />
+  </div>
+  <Button
+    type="submit"
+    className="w-full h-14 bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-700 hover:via-purple-700 hover:to-cyan-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/25 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? (
+      <div className="flex items-center justify-center">
+        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3" />
+        Sending Message...
+      </div>
+    ) : (
+      <div className="flex items-center justify-center">
+        <Send className="w-5 h-5 mr-3" />
+        Send Message
+      </div>
+    )}
+  </Button>
+</form>
+
                   )}
                 </div>
               </div>

@@ -26,10 +26,10 @@ export function About() {
   }, [])
 
   const stats = [
-    { icon: Code, label: "Projects Completed", value: "50+" },
-    { icon: Coffee, label: "Cups of Coffee", value: "1000+" },
-    { icon: Award, label: "Happy Clients", value: "25+" },
-    { icon: Heart, label: "Years Experience", value: "3+" },
+  { icon: Code, label: "Projects Built", value: "12+" },
+  { icon: Coffee, label: "Cups of Coffee", value: "500+" },
+  { icon: Award, label: "Skills Learned", value: "8+" },
+    { icon: Heart, label: "Years Experience", value: "1+" },
   ]
 
   return (
@@ -47,7 +47,7 @@ export function About() {
               <div className="relative">
                 <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 p-1 animate-pulse-slow">
                   <div className="w-full h-full rounded-full overflow-hidden bg-background">
-                    <img src="/professional-developer-headshot.png" alt="Profile" className="w-full h-full object-cover" />
+                    <img src="/professional-developer-headshot.jpg" alt="Profile" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="absolute -top-4 -right-4 w-8 h-8 bg-indigo-500 rounded-full animate-bounce opacity-80" />
@@ -57,24 +57,26 @@ export function About() {
             </div>
 
             <div className="md:w-2/3 space-y-6">
-              <h3 className="text-2xl font-semibold ladder-item bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                Who I Am
-              </h3>
-              <p className="text-muted-foreground ladder-item leading-relaxed">
-                I'm a passionate frontend developer with 3 years of experience building modern web applications. I
-                specialize in React, Next.js, and TypeScript, and I'm dedicated to creating performant, accessible, and
-                visually appealing user interfaces that make a difference.
-              </p>
-              <p className="text-muted-foreground ladder-item leading-relaxed">
-                My journey in web development started when I built my first website in college. Since then, I've worked
-                with startups and agencies to deliver high-quality digital products that solve real-world problems and
-                delight users.
-              </p>
-              <p className="text-muted-foreground ladder-item leading-relaxed">
-                When I'm not coding, you can find me hiking mountain trails, reading sci-fi novels, experimenting with
-                new cooking recipes, or contributing to open-source projects that make the web a better place.
-              </p>
-            </div>
+  <h3 className="text-2xl font-semibold ladder-item bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+    Who I Am
+  </h3>
+  <p className="text-muted-foreground ladder-item leading-relaxed">
+    I'm a motivated full-stack developer with a strong focus on frontend technologies like React, Next.js, and
+    Tailwind CSS. I enjoy turning ideas into intuitive, responsive, and visually appealing user interfaces while
+    continuously sharpening my backend and DevOps skills.
+  </p>
+  <p className="text-muted-foreground ladder-item leading-relaxed">
+    My journey began with experimenting on small web projects, which soon grew into building complete applications.
+    Along the way, I've explored modern frameworks, worked on personal projects, and learned the importance of
+    writing clean, efficient, and scalable code.
+  </p>
+  <p className="text-muted-foreground ladder-item leading-relaxed">
+    Beyond coding, I’m passionate about design, digital art, and anime storytelling, which influence my creative
+    approach to problem-solving. I also enjoy going to the gym, learning new skills, and contributing to open-source
+    projects that make an impact.
+  </p>
+</div>
+
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 ladder-item">

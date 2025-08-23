@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useEffect, useState } from "react"
@@ -9,110 +10,115 @@ export function Hero() {
   const [currentRole, setCurrentRole] = useState(0)
   const [isTypingRole, setIsTypingRole] = useState(false)
   const [displayedRole, setDisplayedRole] = useState("")
+  const [dots, setDots] = useState<{ left: string; top: string; delay: string; duration: string; size: string; color: string }[]>([])
 
-  const fullName = "Alex Johnson"
-  const roles = [
-    "Full Stack Developer",
-    "UI/UX Designer",
-    "Mobile App Developer",
-    "DevOps Engineer",
-    "Data Scientist",
-    "AI/ML Engineer",
-  ]
+  const fullName = "Ayush Kumar Singh"
+const roles = [
+  "Full Stack Developer",
+  "Frontend Developer",
+  "Backend Developer",
+  "UI/UX Enthusiast",
+  "DevOps Learner",
+  "Open Source Contributor",
+];
 
+
+  // fade-in animation
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100)
+    const timer = setTimeout(() => setIsVisible(true), 100)
     return () => clearTimeout(timer)
   }, [])
 
+  // typing effect for name
   useEffect(() => {
-    if (isVisible) {
+    if (!isVisible) return
+    let currentIndex = 0
+    const typingTimer = setInterval(() => {
+      if (currentIndex <= fullName.length) {
+        setDisplayedName(fullName.slice(0, currentIndex))
+        currentIndex++
+      } else {
+        clearInterval(typingTimer)
+      }
+    }, 100)
+    return () => clearInterval(typingTimer)
+  }, [isVisible])
+
+  // typing effect for roles
+  useEffect(() => {
+    if (!isVisible) return
+    const typeRole = () => {
+      setIsTypingRole(true)
+      const currentRoleText = roles[currentRole]
       let currentIndex = 0
+      setDisplayedRole("")
       const typingTimer = setInterval(() => {
-        if (currentIndex <= fullName.length) {
-          setDisplayedName(fullName.slice(0, currentIndex))
+        if (currentIndex <= currentRoleText.length) {
+          setDisplayedRole(currentRoleText.slice(0, currentIndex))
           currentIndex++
         } else {
           clearInterval(typingTimer)
+          setIsTypingRole(false)
         }
-      }, 100)
+      }, 80)
       return () => clearInterval(typingTimer)
     }
-  }, [isVisible])
 
-  useEffect(() => {
-    if (isVisible) {
-      const typeRole = () => {
-        setIsTypingRole(true)
-        const currentRoleText = roles[currentRole]
-        let currentIndex = 0
+    typeRole()
+    const roleTimer = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length)
+    }, 4000)
 
-        setDisplayedRole("")
-
-        const typingTimer = setInterval(() => {
-          if (currentIndex <= currentRoleText.length) {
-            setDisplayedRole(currentRoleText.slice(0, currentIndex))
-            currentIndex++
-          } else {
-            clearInterval(typingTimer)
-            setIsTypingRole(false)
-          }
-        }, 80)
-
-        return () => clearInterval(typingTimer)
-      }
-
-      typeRole()
-
-      const roleTimer = setInterval(() => {
-        setCurrentRole((prev) => (prev + 1) % roles.length)
-      }, 4000)
-
-      return () => clearInterval(roleTimer)
-    }
+    return () => clearInterval(roleTimer)
   }, [isVisible, currentRole])
+
+  // ✅ generate random dots only on client
+  useEffect(() => {
+    const generated = Array.from({ length: 30 }, (_, i) => {
+      const size =
+        i % 3 === 0 ? "w-1 h-1" : i % 3 === 1 ? "w-0.5 h-0.5" : "w-1.5 h-1.5"
+      const color =
+        i % 3 === 0
+          ? "bg-indigo-500/40"
+          : i % 3 === 1
+          ? "bg-purple-500/30"
+          : "bg-cyan-500/20"
+
+      return {
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 5}s`,
+        duration: `${3 + Math.random() * 4}s`,
+        size,
+        color,
+      }
+    })
+    setDots(generated)
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      })
+      element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
     }
   }
 
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
+      {/* background glow blobs */}
       <div className="absolute inset-0 bg-gradient-radial from-indigo-500/20 via-purple-500/15 via-cyan-500/10 to-transparent dark:from-indigo-500/25 dark:via-purple-500/20 dark:via-cyan-500/15" />
 
-      <div className="absolute inset-0">
-        <div className="absolute w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 top-1/4 left-1/4 rounded-full bg-gradient-to-r from-indigo-500/15 to-purple-500/15 blur-[40px] animate-float" />
-        <div className="absolute w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bottom-1/4 right-1/4 rounded-full bg-gradient-to-r from-purple-500/15 to-cyan-500/15 blur-[40px] animate-float-delayed" />
-        <div className="absolute w-24 h-24 sm:w-32 sm:h-32 top-3/4 left-1/3 rounded-full bg-gradient-to-r from-cyan-500/15 to-teal-500/15 blur-[30px] animate-float-slow" />
-        <div className="absolute w-16 h-16 sm:w-20 sm:h-20 top-1/3 right-1/3 rounded-full bg-gradient-to-r from-pink-500/15 to-rose-500/15 blur-[25px] animate-pulse" />
-        <div className="absolute w-20 h-20 sm:w-24 sm:h-24 top-1/2 left-1/2 rounded-full bg-gradient-to-r from-yellow-500/10 to-orange-500/10 blur-[35px] animate-float" />
-      </div>
-
+      {/* floating dots (hydration-safe) */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
+        {dots.map((dot, i) => (
           <div
             key={i}
-            className={`absolute rounded-full animate-float-dots ${
-              i % 3 === 0
-                ? "w-1 h-1 bg-indigo-500/40"
-                : i % 3 === 1
-                  ? "w-0.5 h-0.5 bg-purple-500/30"
-                  : "w-1.5 h-1.5 bg-cyan-500/20"
-            }`}
+            className={`absolute rounded-full animate-float-dots ${dot.size} ${dot.color}`}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`,
+              left: dot.left,
+              top: dot.top,
+              animationDelay: dot.delay,
+              animationDuration: dot.duration,
             }}
           />
         ))}
@@ -182,10 +188,16 @@ export function Hero() {
                 Get In Touch
               </button>
 
-              <button className="group px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-muted-foreground/30 text-muted-foreground hover:border-indigo-500 hover:text-indigo-500 rounded-lg hover-lift transform transition-all duration-300 ease-out text-sm sm:text-base font-medium flex items-center justify-center">
-                <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-                Download CV
-              </button>
+<button className="group px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-muted-foreground/30 text-muted-foreground hover:border-indigo-500 hover:text-indigo-500 rounded-lg hover-lift transform transition-all duration-300 ease-out text-sm sm:text-base font-medium flex items-center justify-center">
+      <a
+        href="/resume.pdf"
+        download="Ayush Kumar Singh's-CV.pdf"
+        className="flex items-center justify-center w-full h-full"
+      >
+        <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
+        Download CV
+      </a>
+    </button>
             </div>
 
             <div

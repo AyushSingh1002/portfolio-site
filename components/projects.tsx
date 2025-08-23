@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect, useRef, useState } from "react"
 import { Github, ExternalLink, Star, Eye, ChevronDown, ChevronUp } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,69 +7,52 @@ import { Button } from "@/components/ui/button"
 
 const projects = [
   {
-    title: "E-commerce Platform",
+    title: "EasyTrack",
     description:
-      "A full-featured online store with product listings, cart functionality, secure checkout, and admin dashboard.",
-    image: "/modern-ecommerce-interface.png",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind"],
-    github: "#",
-    live: "#",
+      "AI-powered resume analyzer and job matcher built with Next.js. Upload resumes, submit job links, and get skill gap analysis, match scores, and improvement tips with a dashboard and payment integration.",
+    image: "/easytrack.png",
+    technologies: ["Next.js", "Playwright", "OpenAI API", "PostgreSQL", "Tailwind"],
+    github: "https://github.com/AyushSingh1002/EasyTrack",
+    live: "https://easy-track-zr3z.vercel.app/",
     featured: true,
-    stats: { stars: 124, views: "2.1k" },
+    stats: { stars: 124, views: "2.3k" },
   },
   {
-    title: "Task Management App",
+    title: "Baate V-1.4",
     description:
-      "A productivity application for organizing tasks with drag-and-drop functionality, team collaboration, and real-time updates.",
-    image: "/task-management-dashboard.png",
-    technologies: ["Next.js", "TypeScript", "Firebase", "Framer Motion"],
-    github: "#",
-    live: "#",
-    featured: true,
-    stats: { stars: 89, views: "1.5k" },
-  },
-  {
-    title: "Weather Dashboard",
-    description:
-      "Real-time weather information with 5-day forecasts, location search, interactive maps, and weather alerts.",
-    image: "/weather-dashboard-interface.png",
-    technologies: ["React", "OpenWeather API", "Chart.js", "Mapbox"],
-    github: "#",
-    live: "#",
-    featured: false,
-    stats: { stars: 67, views: "980" },
-  },
-  {
-    title: "Portfolio Website",
-    description: "A responsive portfolio website with smooth animations, dark mode, and optimized performance.",
-    image: "/portfolio-website-design.png",
-    technologies: ["Next.js", "Tailwind", "Framer Motion", "MDX"],
-    github: "#",
-    live: "#",
-    featured: false,
-    stats: { stars: 45, views: "750" },
-  },
-  {
-    title: "Chat Application",
-    description: "Real-time messaging app with file sharing, emoji reactions, and group chat functionality.",
+      "Real-time chat app with messaging, file sharing, stickers, authentication, and live updates. Built using React, Node.js, and Socket.io for a smooth social experience.",
     image: "/chat-application-interface.png",
-    technologies: ["React", "Socket.io", "Express", "MongoDB"],
-    github: "#",
-    live: "#",
-    featured: false,
-    stats: { stars: 92, views: "1.2k" },
+    technologies: ["React", "Node.js", "Express", "Socket.io", "MongoDB", "JWT"],
+    github: "https://github.com/AyushSingh1002/Full-Stack-Chat-webApp",
+    live: "https://baate01.onrender.com",
+    featured: true,
+    stats: { stars: 98, views: "1.9k" },
   },
   {
-    title: "Analytics Dashboard",
-    description: "Data visualization dashboard with interactive charts, real-time updates, and export functionality.",
-    image: "/analytics-dashboard.png",
-    technologies: ["Vue.js", "D3.js", "Node.js", "PostgreSQL"],
-    github: "#",
-    live: "#",
+    title: "Thought Trail",
+    description:
+      "Storytelling platform for readers and writers with secure authentication, clean UI, and state management for distraction-free creative writing.",
+    image: "/thoughttrails.png",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "JWT", "MERN Stack"],
+    github: "https://github.com/AyushSingh1002/ThoughtTrail",
+    live: "https://thoughttrail-39h8.onrender.com",
     featured: false,
-    stats: { stars: 78, views: "1.1k" },
+    stats: { stars: 76, views: "1.2k" },
   },
-]
+  {
+    title: "Product Kart",
+    description:
+      "Full-stack e-commerce app with product browsing, cart, orders. Built on the MERN stack with Redux for smooth shopping.",
+    image: "/modern-ecommerce-interface.png",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Redux", "JWT"],
+    github: "https://github.com/AyushSingh1002/Product-Store",
+    live: "https://product-store-three-taupe.vercel.app/",
+    featured: false,
+    stats: { stars: 54, views: "980" },
+  },
+];
+
+
 
 export function Projects() {
   const [isVisible, setIsVisible] = useState(false)

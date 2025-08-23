@@ -66,8 +66,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 846-791-4977",
-      href: "tel:+918467914977",
+      value: "+91xxx xxx xxxx",
+      href: "tel:+911111111111",
     },
     {
       icon: MapPin,

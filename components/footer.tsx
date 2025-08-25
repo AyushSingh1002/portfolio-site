@@ -28,7 +28,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-2 bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
               Ayush Kumar Singh
             </h3>
-            <p className="text-sm text-muted-foreground">Frontend Developer & UI/UX Designer</p>
+            <p className="text-sm text-muted-foreground">Full Stack Developer & UI/UX Designer</p>
           </div>
 
           <div className="flex justify-center space-x-4">

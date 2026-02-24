@@ -13,7 +13,7 @@ const projects = [
     image: "/easytrack.png",
     technologies: ["Next.js", "Playwright", "OpenAI API", "PostgreSQL", "Tailwind"],
     github: "https://github.com/AyushSingh1002/EasyTrack",
-    live: "https://easy-track-liard.vercel.app/",
+    live: "https://www.eazietrack.xyz/",
     featured: true,
     stats: { stars: 124, views: "2.3k" },
   },
